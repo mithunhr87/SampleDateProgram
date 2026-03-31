@@ -1,4 +1,4 @@
- name: Build on RHEL 10.1 runner + optional SSH
+name: Build on RHEL 10.1 runner + optional SSH
 
 on:
   push:
