@@ -18,4 +18,3 @@ jobs:
             hostname
             cat /etc/redhat-release || true
             uptime
-``
