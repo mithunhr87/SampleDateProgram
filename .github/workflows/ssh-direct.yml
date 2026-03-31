@@ -1,15 +1,13 @@
-name: Build on RHEL 10.1 runner + optional SSH
+name: Manual SSH to RHEL 10 VM
 
 on:
   workflow_dispatch:
-    branches: [ "main" ]
 
 jobs:
-  build:
-    runs-on: [self-hosted, linux, rhel-10-1]   # <-- your RHEL 10.1 runner label
+  ssh:
+    runs-on: ubuntu-latest
     steps:
-      # OPTIONAL: still use appleboy to SSH from the RHEL runner to a target box
-      - name: Remote actions over SSH
+      - name: SSH to RHEL 10 and run commands
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST }}
@@ -18,4 +16,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             hostname
+            cat /etc/redhat-release || true
             uptime
+``
