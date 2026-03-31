@@ -1,0 +1,31 @@
+ name: Build on RHEL 10.1 runner + optional SSH
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: [self-hosted, linux, rhel-10-1]   # <-- your RHEL 10.1 runner label
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build locally on RHEL 10.1 runner
+        run: |
+          uname -a
+          java -version
+          javac HelloDateTime.java
+          java HelloDateTime
+
+      # OPTIONAL: still use appleboy to SSH from the RHEL runner to a target box
+      - name: Remote actions over SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            hostname
+            uptime
