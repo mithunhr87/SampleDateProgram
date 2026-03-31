@@ -5,6 +5,7 @@ on:
 
 jobs:
   ssh:
+    environment: Techzone_RHEL_VM 
     runs-on: ubuntu-latest
     steps:
       - name: SSH to RHEL 10 and run commands
