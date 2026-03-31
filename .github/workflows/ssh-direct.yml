@@ -3,7 +3,6 @@ name: Build on RHEL 10.1 runner + optional SSH
 on:
   workflow_dispatch:
     branches: [ "main" ]
-  workflow_dispatch:
 
 jobs:
   build:
